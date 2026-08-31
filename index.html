@@ -42,9 +42,11 @@
     .hero { padding: 2.3rem; margin-bottom: 1rem; }
     section { padding: 1.35rem; margin-top: 1rem; }
 
-    h1, h2, h3 { line-height: 1.2; margin: 0 0 0.7rem; }
+    h1, h2, h3, h4 { line-height: 1.2; margin: 0 0 0.7rem; }
     h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); }
     h2 { font-size: clamp(1.35rem, 2.2vw, 1.8rem); }
+    h3 { font-size: 1.1rem; margin-bottom: 0.15rem; }
+    h4 { font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--muted); font-weight: 600; }
 
     .role {
       text-transform: uppercase;
@@ -70,6 +72,9 @@
       text-decoration: none;
       font-weight: 700;
       border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
     }
     .btn-primary { background: var(--accent-strong); color: #fff; }
     .btn-secondary { background: transparent; color: var(--accent-strong); border-color: var(--border); }
@@ -94,6 +99,70 @@
       font-size: 0.93rem;
     }
 
+    /* Tab navigation */
+    .tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.2rem 0;
+    }
+    .tab-btn {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--accent-strong);
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    }
+    .tab-btn:hover { transform: translateY(-1px); }
+    .tab-btn[aria-selected="true"] {
+      background: var(--accent-strong);
+      color: #fff;
+      border-color: var(--accent-strong);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .entry { margin-bottom: 1.3rem; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.3rem; }
+    .entry-date {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .entry-sub { color: var(--muted); font-size: 0.93rem; margin-bottom: 0.4rem; }
+
+    .skill-group { margin-bottom: 1rem; }
+    .skill-group:last-child { margin-bottom: 0; }
+
+    .cert-list, .achievement-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+    .cert-list li, .achievement-list li {
+      padding: 0.55rem 0.8rem;
+      background: #f5ece2;
+      border: 1px solid #ead7c2;
+      border-radius: 10px;
+      font-size: 0.93rem;
+      color: var(--text);
+    }
+
+    .ref-card {
+      padding: 0.9rem;
+      background: #f5ece2;
+      border: 1px solid #ead7c2;
+      border-radius: 12px;
+    }
+    .ref-card p { margin: 0; }
+    .ref-card .ref-title { color: var(--muted); font-size: 0.9rem; }
+
     footer { text-align: center; color: var(--muted); margin-top: 1.5rem; font-size: 0.95rem; }
 
     @media (max-width: 640px) {
@@ -105,88 +174,259 @@
 <body>
   <main class="container">
     <header class="hero">
-      <p class="role">Software Engineer • Research Contributor</p>
+      <p class="role">Software Development Engineer II • Backend &amp; AI Engineering</p>
       <h1>Aninda Sadman</h1>
       <p class="lead">
-        Software engineer and researcher with experience in web development, technical documentation,
-        professional certifications, and publication work. I focus on building practical, maintainable,
-        and user-friendly digital experiences.
+        Backend software engineer with 4+ years of experience designing scalable backend systems,
+        microservices, APIs, and cloud-based solutions at Eagle 3D Streaming. Skilled in Java, Python,
+        JavaScript, Node.js, Spring Boot, Docker, and SQL, with a growing focus on AI engineering,
+        LLM application development, and Agentic AI. Computer Science graduate from BRAC University
+        with published research in deep learning-based Bangla handwritten character recognition.
       </p>
       <div class="actions">
         <a class="btn btn-primary" href="mailto:sadman.aninda@gmail.com">Email Me</a>
         <a class="btn btn-secondary" href="https://github.com/arc-tic-wolf" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arc-tic-wolf" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </header>
 
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        I work across software engineering and research-oriented projects. My background combines
-        practical implementation, academic achievement, and continuous learning through certifications.
-      </p>
-    </section>
+    <section id="cv" aria-label="Curriculum Vitae">
+      <h2>Curriculum Vitae</h2>
+      <p>Click a section below to view the details.</p>
 
-    <section id="highlights">
-      <h2>Highlights</h2>
-      <div class="grid">
-        <article>
-          <p class="meta">Portfolio Website</p>
-          <p>Static GitHub Pages site focused on clean presentation, clear communication, and accessibility.</p>
-        </article>
-        <article>
-          <p class="meta">Publication</p>
-          <p>IEEE publication from ICCIT 2022: 10.1109/ICCIT57492.2022.10054708.</p>
-        </article>
-        <article>
-          <p class="meta">Professional Growth</p>
-          <p>Completed multiple technical credentials across software and computing domains.</p>
-        </article>
+      <div class="tab-nav" role="tablist" aria-label="CV sections">
+        <button class="tab-btn" role="tab" data-tab="about" aria-selected="true">About</button>
+        <button class="tab-btn" role="tab" data-tab="experience" aria-selected="false">Experience</button>
+        <button class="tab-btn" role="tab" data-tab="education" aria-selected="false">Education</button>
+        <button class="tab-btn" role="tab" data-tab="skills" aria-selected="false">Skills</button>
+        <button class="tab-btn" role="tab" data-tab="certifications" aria-selected="false">Certifications</button>
+        <button class="tab-btn" role="tab" data-tab="publication" aria-selected="false">Publication</button>
+        <button class="tab-btn" role="tab" data-tab="achievements" aria-selected="false">Achievements</button>
+        <button class="tab-btn" role="tab" data-tab="references" aria-selected="false">References</button>
       </div>
-    </section>
 
-    <section id="cv-summary">
-      <h2>CV Summary</h2>
-      <div class="two-col">
-        <article>
-          <h3>Academic CV</h3>
-          <ul>
-            <li>Research and academic profile with publication history.</li>
-            <li>Professional contact links including email, LinkedIn, and GitHub.</li>
-            <li>Multiple certifications and credentials listed across technical platforms.</li>
-          </ul>
-        </article>
-        <article>
-          <h3>Professional CV</h3>
-          <ul>
-            <li>Software-focused background with practical project delivery.</li>
-            <li>Experience in academic and technical research.</li>
-            <li>Continuous professional development through certifications and training.</li>
-          </ul>
-        </article>
+      <!-- About -->
+      <div class="tab-panel active" id="panel-about" role="tabpanel">
+        <p>
+          With a strong passion for Artificial Intelligence, software engineering, and research-driven
+          innovation, I am a Computer Science graduate from BRAC University with professional experience
+          in backend engineering, distributed systems, cloud infrastructure, and intelligent applications.
+          I have designed scalable software architectures, secure backend solutions, automation pipelines,
+          and AI-driven systems for real-world applications.
+        </p>
+        <p>
+          My research interests include Deep Learning, large language models, Agentic AI, and intelligent
+          computing. With a strong foundation in algorithmic problem-solving and research experience in
+          deep learning-based Bangla handwritten character recognition, I aim to contribute to impactful
+          research and develop innovative technologies that bridge theory and practical applications.
+        </p>
+        <ul class="contact-list">
+          <li>Location: Baridhara DOHS, Dhaka 1206, Bangladesh</li>
+          <li>Languages: English (IELTS: 7.5), Bangla (Native)</li>
+        </ul>
       </div>
-    </section>
 
-    <section id="skills">
-      <h2>Core Themes</h2>
-      <ul class="tag-list">
-        <li>Web Development</li>
-        <li>Software Engineering</li>
-        <li>Research</li>
-        <li>Documentation</li>
-        <li>Certification</li>
-        <li>GitHub Pages</li>
-        <li>Static Sites</li>
-        <li>Professional Growth</li>
-      </ul>
+      <!-- Experience -->
+      <div class="tab-panel" id="panel-experience" role="tabpanel">
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Software Development Engineer II</h3>
+            <span class="entry-date">Jan 2024 &ndash; Present</span>
+          </div>
+          <p class="entry-sub">Eagle 3D Streaming &middot; Remote, Texas, USA</p>
+          <ul>
+            <li>Maintain and optimise Dockerized backend applications deployed across virtual machine environments while ensuring system reliability and performance.</li>
+            <li>Design and automate CI/CD pipelines integrated with Git workflows and SSH-based deployment processes.</li>
+            <li>Develop monitoring, debugging, and automated alerting systems using Telegram Bot, PM2, Netdata, and Node.js applications for real-time infrastructure tracking.</li>
+            <li>Build scalable backend services including API scheduling, resource allocation, database optimisation, and secure synchronisation mechanisms.</li>
+            <li>Develop and configure distributed AI infrastructure, including mesh LLM systems that combine multi-GPU resources across multiple machines.</li>
+            <li>Deploy and manage data centre machine controllers using MeshCentral and Raspberry Pi for centralised infrastructure administration.</li>
+            <li>Implement and maintain open-source services such as Mailcow and Zammad across distributed machines to optimise infrastructure cost and resource utilisation.</li>
+            <li>Develop local database synchronisation systems using replication layers and key-based security mechanisms for secure and efficient query operations.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Software Development Engineer I</h3>
+            <span class="entry-date">Feb 2022 &ndash; Dec 2023</span>
+          </div>
+          <p class="entry-sub">Eagle 3D Streaming &middot; Remote, Texas, USA</p>
+          <ul>
+            <li>Developed scalable backend services using microservice architecture with secure authentication and authorisation systems.</li>
+            <li>Built dynamic API servers supporting efficient data processing with database abstraction layers.</li>
+            <li>Implemented security solutions including OTP verification, encryption, and secure service-to-service communication.</li>
+            <li>Developed application features including notification systems, team management, and server-side rendered interfaces.</li>
+            <li>Created database migration workflows and scheduling systems for reliable data management and monitoring.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Junior Software Engineer</h3>
+            <span class="entry-date">Jun 2022 &ndash; Sep 2023</span>
+          </div>
+          <p class="entry-sub">Tirzok Private Limited &middot; Dhaka, Bangladesh</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Backend Engineering Intern</h3>
+            <span class="entry-date">Sep 2021 &ndash; Jan 2022</span>
+          </div>
+          <p class="entry-sub">Eagle 3D Streaming &middot; Remote, Texas, USA</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Research Assistant</h3>
+            <span class="entry-date">Jul 2021</span>
+          </div>
+          <p class="entry-sub">BU Biotech Grid</p>
+          <ul>
+            <li>Participated in research activities involving computational approaches.</li>
+            <li>Contributed to research documentation and technical analysis.</li>
+            <li>Received a recommendation letter for research contribution.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="tab-panel" id="panel-education" role="tabpanel">
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Bachelor of Science in Computer Science</h3>
+            <span class="entry-date">Jan 2018 &ndash; May 2022</span>
+          </div>
+          <p class="entry-sub">BRAC University, Dhaka &middot; CGPA: 3.60</p>
+        </div>
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Higher Secondary Certificate (Science)</h3>
+            <span class="entry-date">Jan 2013 &ndash; May 2017</span>
+          </div>
+          <p class="entry-sub">Rajuk Uttara Model College, Uttara &middot; HSC GPA: 5.00, SSC GPA: 5.00</p>
+        </div>
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Secondary Education</h3>
+            <span class="entry-date">Jan 2008 &ndash; Dec 2012</span>
+          </div>
+          <p class="entry-sub">Ideal School and College, Motijheel &middot; JSC GPA: 5.00, PSC GPA: 5.00</p>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="tab-panel" id="panel-skills" role="tabpanel">
+        <div class="skill-group">
+          <h4>Programming Languages</h4>
+          <ul class="tag-list">
+            <li>Java</li><li>JavaScript</li><li>Python</li><li>Bash</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Backend Development</h4>
+          <ul class="tag-list">
+            <li>Node.js</li><li>Spring Boot</li><li>REST APIs</li><li>Microservices Architecture</li>
+            <li>Authentication &amp; Authorisation</li><li>API Gateway Design</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Databases &amp; Storage</h4>
+          <ul class="tag-list">
+            <li>SQL</li><li>Redis</li><li>Database Architecture</li><li>Query Optimisation</li><li>Data Migration</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>DevOps &amp; Infrastructure</h4>
+          <ul class="tag-list">
+            <li>Docker</li><li>Linux</li><li>Git</li><li>CI/CD Pipeline Development</li>
+            <li>Cloud Infrastructure</li><li>Automation Workflow</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>AI Engineering</h4>
+          <ul class="tag-list">
+            <li>LLM Application Development</li><li>Agentic AI</li><li>AI Coding Agents</li>
+            <li>Claude Code</li><li>Agent Skills</li><li>Model Context Protocol (MCP)</li>
+            <li>Deep Learning Fundamentals</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="tab-panel" id="panel-certifications" role="tabpanel">
+        <ul class="cert-list">
+          <li>Google IT Automation with Python</li>
+          <li>TensorFlow Developer Professional Certificate</li>
+          <li>IBM Machine Learning with Python</li>
+          <li>IBM Data Analysis with Python</li>
+          <li>Deep Learning.AI: Neural Networks and Deep Learning, Improving Deep Neural Networks, Structuring Machine Learning Projects, Convolutional Neural Networks</li>
+          <li>SciBlitz AI Hackathon 2026</li>
+          <li>Claude 101</li>
+          <li>Claude with Anthropic API</li>
+          <li>Claude Code in Action</li>
+          <li>Introduction to Agent Skills</li>
+          <li>Introduction to Model Context Protocol (MCP)</li>
+        </ul>
+      </div>
+
+      <!-- Publication -->
+      <div class="tab-panel" id="panel-publication" role="tabpanel">
+        <div class="entry">
+          <h3>KDANet: Handwritten Character Recognition for Bangla Language using Deep Learning</h3>
+          <p>Research focused on handwritten Bangla character recognition using deep learning techniques.</p>
+          <p><a href="https://doi.org/10.1109/ICCIT57492.2022.10054708" target="_blank" rel="noopener noreferrer">doi.org/10.1109/ICCIT57492.2022.10054708</a></p>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="tab-panel" id="panel-achievements" role="tabpanel">
+        <ul class="achievement-list">
+          <li>2nd Position, BRAC University Programming Contest (BUCC), 2018</li>
+          <li>8th Position, Inter University Programming Contest (UITS), 2019</li>
+          <li>5th Position, Hour of Code &ndash; ROBU Tech Carnival, 2019</li>
+          <li>Honourable Mention, IUT ICT Fest IUPC 2019</li>
+          <li>Honourable Mention, BUP Techsurgence 2019</li>
+          <li>Participant, ACM ICPC Regional Contest 2018&ndash;2019</li>
+        </ul>
+      </div>
+
+      <!-- References -->
+      <div class="tab-panel" id="panel-references" role="tabpanel">
+        <div class="two-col">
+          <div class="ref-card">
+            <p class="meta">Tawsif Rahman</p>
+            <p class="ref-title">Software Development Engineer III &mdash; Rakuten</p>
+          </div>
+          <div class="ref-card">
+            <p class="meta">Sadman Amin</p>
+            <p class="ref-title">Graduate Teaching Assistant &mdash; University of Saskatchewan</p>
+          </div>
+          <div class="ref-card">
+            <p class="meta">Robin Mollah</p>
+            <p class="ref-title">Tech Lead &mdash; GoBubble</p>
+          </div>
+          <div class="ref-card">
+            <p class="meta">Ahsan Muzaheed</p>
+            <p class="ref-title">Chief Technology Officer &mdash; Eagle 3D Streaming</p>
+          </div>
+          <div class="ref-card">
+            <p class="meta">Md. Golam Hossain</p>
+            <p class="ref-title">Software Development Team Lead &mdash; Tirzok Private Limited</p>
+          </div>
+        </div>
+        <p style="margin-top: 0.9rem; font-size: 0.88rem;">Contact details available on request.</p>
+      </div>
     </section>
 
     <section id="contact">
       <h2>Contact</h2>
       <ul class="contact-list">
         <li>Email: <a href="mailto:sadman.aninda@gmail.com">sadman.aninda@gmail.com</a></li>
-        <li>Email: <a href="mailto:sadmanamin@gmail.com">sadmanamin@gmail.com</a></li>
         <li>GitHub: <a href="https://github.com/arc-tic-wolf" target="_blank" rel="noopener noreferrer">github.com/arc-tic-wolf</a></li>
         <li>LinkedIn: <a href="https://www.linkedin.com/in/arc-tic-wolf" target="_blank" rel="noopener noreferrer">linkedin.com/in/arc-tic-wolf</a></li>
+        <li>Location: Baridhara DOHS, Dhaka 1206, Bangladesh</li>
       </ul>
     </section>
 
@@ -195,6 +435,22 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+
+        tabButtons.forEach((b) => b.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+
+        tabPanels.forEach((panel) => {
+          panel.classList.toggle('active', panel.id === `panel-${target}`);
+        });
+      });
+    });
   </script>
 </body>
 </html>
