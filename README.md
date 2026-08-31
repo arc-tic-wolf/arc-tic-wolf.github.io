@@ -11,11 +11,9 @@ Static GitHub Pages portfolio site for **Aninda Sadman**.
 This site is a single-page portfolio featuring:
 
 - Hero and short professional summary
-- About section
-- Experience highlights
-- Education summary
-- Certifications overview
-- Publication reference
+- CV-based profile summary
+- Research and publication highlights
+- Certifications and training overview
 - Contact and social links
 
 ## Tech

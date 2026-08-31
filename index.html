@@ -6,161 +6,99 @@
   <title>Aninda Sadman | Portfolio</title>
   <style>
     :root {
-      --bg: #0b1020;
-      --panel: #121a33;
-      --text: #eaf0ff;
-      --muted: #b8c2e6;
-      --accent: #6da8ff;
-      --accent-strong: #3f84ff;
-      --border: #243052;
-      --shadow: 0 10px 30px rgba(8, 12, 24, 0.35);
+      --bg: #f4efe8;
+      --panel: #fffaf3;
+      --text: #241f1a;
+      --muted: #665a4d;
+      --accent: #8b5e34;
+      --accent-strong: #5f3b20;
+      --border: #e4d7c8;
+      --shadow: 0 10px 25px rgba(74, 52, 33, 0.10);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(circle at top, #172447 0%, var(--bg) 55%);
+      background: linear-gradient(180deg, #fbf7f0 0%, var(--bg) 100%);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .container {
-      width: min(1080px, 92vw);
+      width: min(1100px, 92vw);
       margin: 0 auto;
       padding: 2rem 0 3rem;
     }
 
-    .hero {
-      background: linear-gradient(135deg, rgba(109, 168, 255, 0.18), rgba(109, 168, 255, 0.05));
+    .hero, section {
+      background: var(--panel);
       border: 1px solid var(--border);
+      border-radius: 18px;
       box-shadow: var(--shadow);
-      border-radius: 20px;
-      padding: 2.5rem;
-      margin-bottom: 1.5rem;
     }
 
-    h1,
-    h2,
-    h3 {
-      line-height: 1.2;
-      margin: 0 0 0.6rem;
-    }
+    .hero { padding: 2.3rem; margin-bottom: 1rem; }
+    section { padding: 1.35rem; margin-top: 1rem; }
 
-    h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-    }
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 0.7rem; }
+    h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+    h2 { font-size: clamp(1.35rem, 2.2vw, 1.8rem); }
 
-    h2 {
-      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
-      margin-top: 0;
+    .role {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
     }
 
     .lead {
       color: var(--muted);
+      max-width: 75ch;
+      margin-bottom: 1.2rem;
       font-size: 1.04rem;
-      max-width: 70ch;
-      margin-bottom: 1.25rem;
     }
 
-    .role {
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      font-size: 0.95rem;
-    }
-
-    .actions {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
+    .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .btn {
       display: inline-block;
-      padding: 0.65rem 1rem;
-      border-radius: 10px;
+      padding: 0.72rem 1rem;
+      border-radius: 999px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       border: 1px solid transparent;
     }
+    .btn-primary { background: var(--accent-strong); color: #fff; }
+    .btn-secondary { background: transparent; color: var(--accent-strong); border-color: var(--border); }
 
-    .btn-primary {
-      background: var(--accent-strong);
-      color: #fff;
-    }
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 
-    .btn-secondary {
-      border-color: var(--border);
+    p, li { color: var(--muted); }
+    ul { margin: 0; padding-left: 1.1rem; }
+    .meta { color: var(--text); font-weight: 700; margin-bottom: 0.25rem; }
+    .contact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
+    a { color: var(--accent); }
+
+    .two-col { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; list-style: none; }
+    .tag-list li {
       color: var(--text);
-      background: rgba(255, 255, 255, 0.03);
+      background: #f5ece2;
+      border: 1px solid #ead7c2;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.93rem;
     }
 
-    .grid {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      margin-bottom: 1rem;
-    }
-
-    section {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.35rem;
-      box-shadow: var(--shadow);
-      margin-top: 1rem;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 1.15rem;
-    }
-
-    p,
-    li {
-      color: var(--muted);
-      margin: 0.35rem 0;
-    }
-
-    .meta {
-      margin: 0;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .contact-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 0.35rem;
-    }
-
-    a {
-      color: #9cc2ff;
-    }
-
-    footer {
-      color: var(--muted);
-      font-size: 0.95rem;
-      text-align: center;
-      margin-top: 1.4rem;
-    }
+    footer { text-align: center; color: var(--muted); margin-top: 1.5rem; font-size: 0.95rem; }
 
     @media (max-width: 640px) {
-      .hero {
-        padding: 1.6rem;
-      }
-
-      section {
-        padding: 1.1rem;
-      }
+      .hero { padding: 1.5rem; }
+      section { padding: 1.1rem; }
     }
   </style>
 </head>
@@ -170,67 +108,75 @@
       <p class="role">Software Engineer • Research Contributor</p>
       <h1>Aninda Sadman</h1>
       <p class="lead">
-        Developer with an academic and professional background in software systems,
-        practical engineering, and research publication. I build reliable web solutions,
-        keep learning through certifications, and apply research thinking to real-world problems.
+        Software engineer and researcher with experience in web development, technical documentation,
+        professional certifications, and publication work. I focus on building practical, maintainable,
+        and user-friendly digital experiences.
       </p>
       <div class="actions">
-        <a class="btn btn-primary" href="mailto:sadman.aninda@gmail.com">Contact Me</a>
-        <a class="btn btn-secondary" href="https://github.com/arc-tic-wolf" target="_blank" rel="noopener noreferrer">View GitHub</a>
+        <a class="btn btn-primary" href="mailto:sadman.aninda@gmail.com">Email Me</a>
+        <a class="btn btn-secondary" href="https://github.com/arc-tic-wolf" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </header>
 
     <section id="about">
       <h2>About</h2>
       <p>
-        I enjoy blending hands-on development with structured problem solving. My CVs highlight
-        experience across software projects, continuous upskilling through certifications, and
-        research-oriented work that values clarity, quality, and impact.
+        I work across software engineering and research-oriented projects. My background combines
+        practical implementation, academic achievement, and continuous learning through certifications.
       </p>
     </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
+    <section id="highlights">
+      <h2>Highlights</h2>
       <div class="grid">
         <article>
-          <p class="meta">Software & Project Delivery</p>
-          <p>Built and contributed to practical software and web-focused work with attention to usability and maintainability.</p>
+          <p class="meta">Portfolio Website</p>
+          <p>Static GitHub Pages site focused on clean presentation, clear communication, and accessibility.</p>
         </article>
         <article>
-          <p class="meta">Academic & Technical Research</p>
-          <p>Applied analytical methods and technical writing in research outputs, including peer-reviewed publication.</p>
+          <p class="meta">Publication</p>
+          <p>IEEE publication from ICCIT 2022: 10.1109/ICCIT57492.2022.10054708.</p>
         </article>
         <article>
-          <p class="meta">Continuous Professional Development</p>
-          <p>Maintained active learning through certifications and technical programs aligned with modern engineering needs.</p>
+          <p class="meta">Professional Growth</p>
+          <p>Completed multiple technical credentials across software and computing domains.</p>
         </article>
       </div>
     </section>
 
-    <section id="education">
-      <h2>Education</h2>
-      <p>
-        Strong foundation in computer science and engineering principles, reflected in both academic achievements and applied work.
-      </p>
+    <section id="cv-summary">
+      <h2>CV Summary</h2>
+      <div class="two-col">
+        <article>
+          <h3>Academic CV</h3>
+          <ul>
+            <li>Research and academic profile with publication history.</li>
+            <li>Professional contact links including email, LinkedIn, and GitHub.</li>
+            <li>Multiple certifications and credentials listed across technical platforms.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Professional CV</h3>
+          <ul>
+            <li>Software-focused background with practical project delivery.</li>
+            <li>Experience in academic and technical research.</li>
+            <li>Continuous professional development through certifications and training.</li>
+          </ul>
+        </article>
+      </div>
     </section>
 
-    <section id="certifications">
-      <h2>Certifications</h2>
-      <ul>
-        <li>Professional certifications and technical training across software and computing domains.</li>
-        <li>Focused on applied skills, practical implementation, and industry-relevant tools.</li>
-        <li>Additional credentials are available through the provided CV records and professional profiles.</li>
-      </ul>
-    </section>
-
-    <section id="publications">
-      <h2>Publications</h2>
-      <ul>
-        <li>
-          <a href="https://doi.org/10.1109/ICCIT57492.2022.10054708" target="_blank" rel="noopener noreferrer">
-            IEEE Publication (ICCIT 2022) — DOI: 10.1109/ICCIT57492.2022.10054708
-          </a>
-        </li>
+    <section id="skills">
+      <h2>Core Themes</h2>
+      <ul class="tag-list">
+        <li>Web Development</li>
+        <li>Software Engineering</li>
+        <li>Research</li>
+        <li>Documentation</li>
+        <li>Certification</li>
+        <li>GitHub Pages</li>
+        <li>Static Sites</li>
+        <li>Professional Growth</li>
       </ul>
     </section>
 
@@ -244,13 +190,11 @@
       </ul>
     </section>
 
-    <footer>
-      © <span id="year"></span> Aninda Sadman
-    </footer>
+    <footer>© <span id="year"></span> Aninda Sadman</footer>
   </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
