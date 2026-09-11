@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timeline | Aninda Sadman</title>
+  <link rel="stylesheet" href="timeline.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <p class="eyebrow">Updates</p>
+      <h1>Timeline</h1>
+      <p>Recent milestones, work, publications, and other updates.</p>
+      <div class="actions">
+        <a class="btn btn-secondary" href="index.html">Back to portfolio</a>
+        <a class="btn btn-primary" href="manage-timeline.html">Manage Timeline</a>
+      </div>
+    </header>
+
+    <section class="panel" aria-labelledby="timeline-heading">
+      <h2 id="timeline-heading">Recent updates</h2>
+      <div id="timeline" aria-live="polite"><p>Loading timeline…</p></div>
+    </section>
+    <footer>© <span id="year"></span> Aninda Sadman</footer>
+  </main>
+  <script src="timeline.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    timelineApp.loadEntries().then(timelineApp.renderPublic).catch((error) => timelineApp.showError(error.message));
+  </script>
+</body>
+</html>
